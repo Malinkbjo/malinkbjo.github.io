@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <title>Hoppetau</title>
+    <style>
+
+        @keyframes catwalk {
+            to {
+                background-position: 0 -6000px;
+            }
+        }
+        @keyframes rev {
+            to {
+                background-position: 0 -1500px;
+            }
+
+        }
+
+        .katt { /* når man bruker class må man bruke "." før det man skal bruke i style*/
+            position: absolute;
+            background-image: url("hoppetau2.png");
+            width: 500px;
+            height: 500px;
+
+            animation-name: catwalk;
+            animation-timing-function: steps(12), steps(48);
+            animation-duration: 3s, 4s;
+            animation-iteration-count: infinite;
+        }
+
+
+    </style>
+</head>
+<body>
+<div id=<"k1" class="katt"></div>
+
+
+
+
+</body>
+</html>

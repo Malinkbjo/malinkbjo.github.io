@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mashoe</title>
+
+    <style>
+        body {
+            margin:0;
+            min-height: 100vh;
+            display: grid;
+            grid-template-rows: 300px 500px 200px;
+            box-sizing: border-box;
+        }
+
+        body > header {
+            background-color: #D2C9C7;
+            filter: drop-shadow(0 5px 5px black);
+            margin-bottom:30px;
+        }
+
+        body > header > h1 {
+            font-size: 40px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 70px;
+            margin-top:30px;
+        }
+
+
+
+        body > main > nav {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            box-sizing: border-box;
+            text-align: center;
+            margin-top: 0;
+            border: 5px solid black;
+            margin-bottom: 50px;
+
+        }
+
+        body > main > nav > a {
+            margin: 20px auto;
+            font-weight: bold;
+            color: black;
+            text-decoration: none;
+            font-size: 20px;
+            transition: 0.2s;
+        }
+
+        body > main > nav > a:hover {
+            color: #D2C9C7;
+
+        }
+
+        body > main > section > article:hover {
+            color: #D2C9C7 ;
+        }
+
+
+        #ikoner {
+            display: grid;
+            grid-auto-flow: column;
+            align-items: end;
+            justify-content: center;
+            grid-gap: 150px;
+        }
+
+        #ikoner > a  > img {
+            width: 60px;
+            text-align: center;
+            padding-bottom:10px;
+        }
+
+
+        body > main {
+            background-color: white;
+        }
+
+        h3 {
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+
+        @media (max-width: 680px) {
+
+            body > main > nav {
+                grid-template-columns: 1fr;
+            }
+
+            #ikoner {
+                grid-gap: 30px;
+            }
+
+        }
+
+
+
+        body > main > h2 {
+            text-align: center;
+            border-bottom:1px solid black;
+            margin-bottom: 20px;
+            margin-top: 40px;
+            font-weight: bold;
+            font-size: 30px;
+        }
+
+        body > main > .midt {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ikon .start {
+            display: block;
+        }
+        .ikon .overlay {
+            display: none;
+        }
+        .ikon:hover .start {
+            display: none;
+        }
+        .ikon:hover .overlay {
+            display: block;
+        }
+
+
+    </style>
+</head>
+<body>
+<header>
+    <h1>MASHOE</h1>
+
+    <div id="ikoner">
+
+        <a href="Populære.html" class="ikon">
+            <img src="Bilder/skoRRF-01.png" class="start">
+            <img src="Bilder/skoRSort-01.png" class="overlay">
+        </a>
+
+        <a href="Nettsiden.html" class="ikon">
+            <img src="Bilder/husRF-01.png" class="start">
+            <img src="Bilder/husSortF-01.png" class="overlay">
+        </a>
+
+        <a href="handlevogn.html" class="ikon">
+            <img src="Bilder/vognR-01.png" class="start">
+            <img src="Bilder/vognSort-01.png" class="overlay">
+        </a>
+    </div>
+
+
+</header>
+<main>
+
+    <h2> HANDLEVOGN </h2>
+
+    <section class="midt">
+        <img src="Bilder/black_velvet-juniorb_jle-3554-04-supersellers.jpg">
+
+    </section>
+
+
+    <h3>Du har ingen produkter i handlekurven </h3>
+
+
+    
+
+
+</main>
+<footer></footer>
+
+</body>
+</html>

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mashoe</title>
+
+    <style>
+
+
+
+        html,body {
+            margin: 0;
+            padding: 0;
+        }
+        .slider {
+            width: 1024px;
+            margin: 2em auto;
+
+        }
+
+        .slider-wrapper {
+            width: 100%;
+            height: 400px;
+            position: relative;
+        }
+
+        .slide {
+            float: left;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 3s linear;
+        }
+
+        .slider-wrapper > .slide:first-child {
+            opacity: 1;
+        }
+
+
+
+
+
+
+
+        body {
+            margin:0;
+            min-height: 100vh;
+            display: grid;
+            grid-template-rows: 250px 600px 200px;
+            box-sizing: border-box;
+        }
+
+        body > header {
+            background-color: #D2C9C7;
+        }
+
+        body > header > p {
+            font-size: 40px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 60px;
+            margin-top:20px;
+        }
+
+        body > main > a {
+            text-align: center;
+            margin: 50px;
+            font-weight: bold;
+            border: 2px solid black;
+
+        }
+
+        body > main > nav {
+            display: grid;
+            grid-auto-flow: column;
+            box-sizing: border-box;
+            text-align: center;
+            margin-top: 0;
+            border: 5px solid black;
+            margin-bottom: 50px;
+
+        }
+
+        body > main > nav > a {
+            margin: 20px auto;
+            font-weight: bold;
+            color: black;
+            text-decoration: none;
+            font-size: 20px;
+            transition: 0.2s;
+        }
+
+        body > main > nav > a:hover {
+            color: #D2C9C7;
+
+        }
+
+        #ikoner {
+            display: grid;
+            grid-auto-flow: column;
+            align-items: end;
+            justify-content: center;
+            grid-gap: 150px;
+        }
+
+        #ikoner > a  > img {
+            width: 60px;
+            text-align: center;
+            padding-bottom:10px;
+        }
+
+
+        body > main {
+            background-color: white;
+        }
+
+        #forside {
+            padding-right: 10%;
+            padding-left: 10%;
+            padding-bottom: 10%;
+
+            display: grid;
+            grid-gap: 30px;
+            grid-template-columns: 1fr 1fr 1fr;
+
+        }
+
+        #forside > article {
+            text-align: center;
+
+        }
+
+        #forside img {
+            width: 100%;
+        }
+
+
+
+    </style>
+</head>
+<body>
+<header>
+    <p>MASHOE</p>
+
+    <div id="ikoner">
+
+        <a href="#">
+            <img src="skoR-01.png">
+        </a>
+
+        <a href="#">
+            <img src="Bilder/husRF-01.png">
+        </a>
+
+        <a href="#">
+            <img src="Bilder/vognR-01.png">
+        </a>
+    </div>
+
+    <div class="slider" id="main-slider"><!-- outermost container element -->
+        <div class="slider-wrapper"><!-- innermost wrapper element -->
+            <img src="http://lorempixel.com/1024/400/animals" alt="First" class="slide" /><!-- slides -->
+            <img src="http://lorempixel.com/1024/400/business" alt="Second" class="slide" />
+            <img src="http://lorempixel.com/1024/400/city" alt="Third" class="slide" />
+        </div>
+    </div>
+</header>
+<main>
+    <nav>
+        <a href="dame.html">DAME</a>
+        <a href="#">HERRE</a>
+        <a href="#">BARN</a>
+        <a href="#">TILBEHØR</a>
+        <a href="#">SALG</a>
+
+    </nav>
+
+
+    <section id="forside">
+
+        <article>
+            <h1>NYHETER</h1>
+            <img src="skoNly4.jpeg">
+        </article>
+
+        <article>
+            <h1>SALG</h1>
+            <img src="skoNly3.jpeg">
+        </article>
+
+        <article>
+            <h1>VINTER</h1>
+            <img src="skoNly2.jpeg">
+        </article>
+
+    </section>
+
+
+
+</main>
+<footer></footer>
+<script>(function() {
+
+    function Slideshow( element ) {
+        this.el = document.querySelector( element );
+        this.init();
+    }
+
+    Slideshow.prototype = {
+        init: function() {
+            this.wrapper = this.el.querySelector( ".slider-wrapper" );
+            this.slides = this.el.querySelectorAll( ".slide" );
+            this.previous = this.el.querySelector( ".slider-previous" );
+            this.next = this.el.querySelector( ".slider-next" );
+            this.index = 0;
+            this.total = this.slides.length;
+            this.timer = null;
+
+            this.action();
+            this.stopStart();
+        },
+        _slideTo: function( slide ) {
+            var currentSlide = this.slides[slide];
+            currentSlide.style.opacity = 1;
+
+            for( var i = 0; i < this.slides.length; i++ ) {
+                var slide = this.slides[i];
+                if( slide !== currentSlide ) {
+                    slide.style.opacity = 0;
+                }
+            }
+        },
+        action: function() {
+            var self = this;
+            self.timer = setInterval(function() {
+                self.index++;
+                if( self.index == self.slides.length ) {
+                    self.index = 0;
+                }
+                self._slideTo( self.index );
+
+            }, 3000);
+        },
+        stopStart: function() {
+            var self = this;
+            self.el.addEventListener( "mouseover", function() {
+                clearInterval( self.timer );
+                self.timer = null;
+
+            }, false);
+            self.el.addEventListener( "mouseout", function() {
+                self.action();
+
+            }, false);
+        }
+
+
+    };
+
+    document.addEventListener( "DOMContentLoaded", function() {
+
+        var slider = new Slideshow( "#main-slider" );
+
+    });
+
+
+})();
+</script>
+</body>
+</html>

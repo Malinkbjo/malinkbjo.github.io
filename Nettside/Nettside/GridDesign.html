@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Grid Design</title>
+
+    <style>
+        body {
+            margin:0;
+            display: grid;
+            min-height: 100vh;
+            grid-template-rows: auto 1fr auto;
+            font-family: sans-serif;
+        }
+        body > header {
+            background-color: white;
+            filter: drop-shadow(0 5px 5px black); /* skygge/strek under linkene */
+        }
+
+        body > header > nav {
+            display: grid;
+            grid-auto-flow: column;
+        }
+        body > header > nav > a {
+            text-decoration: none; /* tar bort streken under linkene */
+            font-weight: bold;
+            text-align: center;
+            padding:10px;
+            color: #595959;
+        }
+        body > header > nav > a.valgt { /* farge på en av de linkene */
+            background-color: darkslateblue;
+            color: white;
+        }
+        body > header > nav > a:hover { /* farge på linkene når man tar musa over de */
+            background-color: orange;
+            color: white;
+        }
+
+        body > footer {
+            padding-top:10px;
+            padding-bottom:10px;
+            display:grid;
+            grid-gap:20px;
+            grid-auto-flow:column;
+            text-align:center;
+        }
+
+        body > footer > article > img {
+            width: 90px;
+
+        }
+
+        body > main {
+            background-image: url("../Grid/bbb.jpg");
+            background-size: cover;
+            background-position: center bottom;
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="#">HOME</a>
+            <a class="valgt" href="#">ABOUT US</a>
+            <a href="#">NEWS</a>
+            <a href="#">CONTACT</a>
+            <a href="#">STORE</a>
+            <a href="#">BAG</a>
+
+
+        </nav>
+    </header>
+    <main>
+
+    </main>
+    <footer>
+        <article>
+            <img src="../Grid/Figurer.png">
+        </article>
+
+        <article>
+            <img src="../Grid/handlevogn.png">
+        </article>
+
+        <article>
+            <img src="../Grid/hus.png">
+        </article>
+
+
+    </footer>
+
+
+
+
+
+
+</body>
+</html>

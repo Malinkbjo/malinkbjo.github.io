@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Logg inn</title>
+
+    <style>
+
+        body {
+            background-color: lightgrey;
+        }
+        header {
+            text-align: center;
+        }
+
+        h1 {
+            text-align: center;
+            font-weight: bold;
+            font-size: 25px;
+            margin-top: -60px;
+        }
+
+        #logo {
+
+            width:400px;
+            height:300px;
+            margin-bottom: 0;
+            margin-left:65px;
+        }
+        #skjema {
+            text-align: center;
+            margin-top: 40px;
+        }
+        /* burger */
+        #burger {
+            cursor: pointer; /* finger som mus i stedet for pil*/
+            display: grid;
+            width: 20px;
+            height: 20px;
+            align-content: space-between; /* luft mellom delene av burgeren*/
+            margin-top: -320px;
+            margin-left: 15px;
+        }
+
+        #burger > div {
+            height: 2px;
+            background-color: black;
+
+        }
+        #menu {
+            background-color: white;
+            position: absolute;
+            width: 200px;
+            height: 300px;
+            left: -300px;
+            top: 64px;
+            transition: 1s;
+        }
+        #cb{
+            display: none;
+        }
+
+        #cb:checked ~ #menu {
+            left:0;
+        }
+
+        #burger > div {
+            transition: 1s;
+        }
+
+        #cb:checked ~ #burger > div:first-child {
+            transform: translateY(9px) rotate(45deg);
+
+        }
+        #cb:checked ~ #burger > div:nth-child(2) {
+            opacity: 0;
+        }
+
+
+        #cb:checked ~ #burger > div:last-child {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+        /* burger */
+
+    </style>
+</head>
+<body>
+
+<header>
+
+    <img src="Bilder/michat-01.png" id="logo">
+
+</header>
+<main>
+
+    <h1>Logg inn</h1>
+
+    <form id="skjema">
+        <input type="text" id="inpNavn" placeholder="Brukernavn">
+        <button type="submit">Gå til chatten</button>
+
+    </form>
+
+    <input type="checkbox" id="cb">
+    <label for="cb" id="burger">
+        <div></div>
+        <div></div>
+        <div></div>
+    </label>
+
+</main>
+
+    <script>
+
+        const inpNavn = document.getElementById("inpNavn");
+        const skjema = document.getElementById("skjema");
+
+
+        if(localStorage.brukernavn) {
+            inpNavn.value = localStorage.brukernavn;
+        }
+
+        skjema.onsubmit = function(evt) {
+            evt.preventDefault();
+
+            localStorage.brukernavn = inpNavn.value;
+            document.location.href = "MiChat.html";
+
+        }
+
+
+
+
+
+    </script>
+
+</body>
+</html>

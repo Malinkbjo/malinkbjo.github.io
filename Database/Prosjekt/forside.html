@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link REL="SHORTCUT ICON" HREF="Bilder/michat-01.png" id="link">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MiChat</title>
+
+
+    <style>
+        /* ikon i fanen "<img src="michat-01.png" id="logo">" */
+        body {
+            background-color: lightgrey;
+
+
+        }
+
+        img {
+
+            width:400px;
+            height: 300px;
+            margin-left: 480px;
+            margin-top:-20px;
+            margin-bottom: 0;
+        }
+
+        h1 {
+            text-align: center;
+            font-weight: bold;
+            font-size: 25px;
+            margin-top: -60px;
+
+        }
+
+        p {
+            text-align: center;
+            margin-top: 140px;
+            font-weight: ;
+
+        }
+
+        /* skriverutene */
+        #q {
+            margin-left: 570px;
+
+        }
+        #t {
+            margin-left: 570px;
+            margin-top:20px;
+        } /* skriverutene */
+
+        /* burger */
+        #burger {
+            cursor: pointer; /* finger som mus i stedet for pil*/
+            display: grid;
+            width: 20px;
+            height: 20px;
+            align-content: space-between; /* luft mellom delene av burgeren*/
+            margin-top: -320px;
+            margin-left: 15px;
+        }
+
+        #burger > div {
+            height: 2px;
+            background-color: black;
+
+        }
+        #menu {
+            background-color: white;
+            position: absolute;
+            width: 200px;
+            min-height: 500px;
+            left: -300px;
+            top: 64px;
+            transition: 1s;
+        }
+        #cb{
+            display: none;
+        }
+
+        #cb:checked ~ #menu {
+            left:0;
+        }
+
+        #burger > div {
+            transition: 1s;
+        }
+
+        #cb:checked ~ #burger > div:first-child {
+            transform: translateY(9px) rotate(45deg);
+
+        }
+        #cb:checked ~ #burger > div:nth-child(2) {
+            opacity: 0;
+        }
+
+
+        #cb:checked ~ #burger > div:last-child {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+        /* burger */
+
+
+
+    </style>
+
+
+
+
+</head>
+<body>
+<header>
+
+
+    <img src="Bilder/michat-01.png">
+
+</header>
+<main>
+
+    <h1>Logg inn</h1>
+
+
+
+
+    <form id="skjema">
+
+        <input type="text" id="q" placeholder="Brukernavn">
+        <input type="text" id="t" placeholder="Passord">
+
+    </form>
+
+
+    <script>
+
+        function finnBil(evt) {
+            evt.preventDefault(); //ikke gjør det du pleier //
+
+        }
+
+        const skjema = document.getElementById("skjema");
+        skjema.onsubmit = finnBil; //søke etter biler//
+
+    </script>
+
+    <input type="checkbox" id="cb">
+    <label for="cb" id="burger">
+        <div></div>
+        <div></div>
+        <div></div>
+    </label>
+    <nav id="menu">
+        hjhj
+    </nav>
+
+</main>
+<footer>
+    <p> Eller med </p>
+</footer>
+
+
+</body>
+</html>

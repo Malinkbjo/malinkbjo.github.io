@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link REL="SHORTCUT ICON" HREF="Bilder/michat-01.png" id="link">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MiChat</title>
+
+    <style>
+        /* ikon i fanen "<link REL="SHORTCUT ICON" HREF="michat-01.png">" */
+        body {
+            background-color: lightgrey;
+
+
+        }
+
+        header {
+            text-align: center;
+        }
+
+        #logo {
+
+            width:400px;
+            height:300px;
+            margin-bottom: 0;
+            margin-left:65px;
+        }
+
+        h1 {
+            text-align: center;
+            font-weight: bold;
+            font-size: 25px;
+            margin-top: -60px;
+
+        }
+
+        #ellerMed {
+            text-align: center;
+            margin-top: 140px;
+
+
+        }
+
+        #skjema {
+            text-align: center;
+        }
+
+        /* skriverutene */
+        #q {
+            text-align: left;
+
+
+        }
+        #t {
+            text-align: left;
+
+
+
+        } /* skriverutene */
+
+        nav > a {
+            font-size: 15px;
+            font-weight: bold;
+            text-align: left;
+            margin-left: 20px;
+            margin-top: 20px;
+            text-decoration: none;
+            color: black;
+
+
+
+        }
+
+        /* burger */
+        #burger {
+            cursor: pointer; /* finger som mus i stedet for pil*/
+            display: grid;
+            width: 20px;
+            height: 20px;
+            align-content: space-between; /* luft mellom delene av burgeren*/
+            margin-top: -330px;
+            margin-left: 15px;
+        }
+
+        #burger > div {
+            height: 2px;
+            background-color: black;
+
+        }
+        #menu {
+            background-color: white;
+            position: absolute;
+            width: 200px;
+            height: 300px;
+            left: -300px;
+            top: 64px;
+            transition: 1s;
+        }
+        #cb{
+            display: none;
+        }
+
+        #cb:checked ~ #menu {
+            left:0;
+        }
+
+        #burger > div {
+            transition: 1s;
+        }
+
+        #cb:checked ~ #burger > div:first-child {
+            transform: translateY(9px) rotate(45deg);
+
+        }
+        #cb:checked ~ #burger > div:nth-child(2) {
+            opacity: 0;
+        }
+
+
+        #cb:checked ~ #burger > div:last-child {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+        /* burger */
+
+
+
+    </style>
+
+</head>
+<body>
+<header>
+
+
+    <img src="Bilder/michat-01.png" id="logo">
+
+</header>
+<main>
+
+    <h1>Logg inn</h1>
+
+
+
+
+    <form id="skjema">
+
+        <p>
+            <input type="text" id="q" placeholder="Brukernavn">
+        </p>
+
+        <p>
+            <input type="password" id="t" placeholder="Passord">
+        </p>
+
+
+    </form>
+
+
+    <script>
+
+        function finnBil(evt) {
+            evt.preventDefault(); //ikke gjør det du pleier //
+
+        }
+
+        const skjema = document.getElementById("skjema");
+        skjema.onsubmit = finnBil; //søke etter biler//
+
+    </script>
+
+    <input type="checkbox" id="cb">
+    <label for="cb" id="burger">
+        <div></div>
+        <div></div>
+        <div></div>
+    </label>
+    <nav id="menu">
+        <a href="#">Registrer deg</a>
+
+    </nav>
+
+
+
+
+</main>
+<footer>
+    <p id="ellerMed"> Eller med </p>
+</footer>
+
+
+</body>
+<div id="firebaseui-auth-container"></div>
+
+
+<script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
+<script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyAQQq1eJqUQ9EdzAXJLkzV7VmgdtZwtSpc",
+        authDomain: "it01-bfc5b.firebaseapp.com",
+        databaseURL: "https://it01-bfc5b.firebaseio.com",
+        projectId: "it01-bfc5b",
+        storageBucket: "it01-bfc5b.appspot.com",
+        messagingSenderId: "291854547493"
+    };
+    firebase.initializeApp(config);
+</script>
+
+<script src="https://cdn.firebase.com/libs/firebaseui/2.6.0/firebaseui.js"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.6.0/firebaseui.css" />
+<script type="text/javascript">
+    // FirebaseUI config.
+    var uiConfig = {
+        signInSuccessUrl: 'MiChat.html',
+        signInOptions: [
+            // Leave the lines as is for the providers you want to offer your users.
+            firebase.auth.GoogleAuthProvider.PROVIDER_ID
+        ],
+        // Terms of service url.
+        tosUrl: '<your-tos-url>'
+    };
+
+    // Initialize the FirebaseUI Widget using Firebase.
+    var ui = new firebaseui.auth.AuthUI(firebase.auth());
+    // The start method will wait until the DOM is loaded.
+    ui.start('#firebaseui-auth-container', uiConfig);
+</script>
+
+
+</html>

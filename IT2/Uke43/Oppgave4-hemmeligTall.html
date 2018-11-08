@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hemmelig Tall</title>
+</head>
+<body>
+
+    <input type="number" id="gjettTall" placeholder="Hvilket tall gjetter du?">
+    <button id="btn">Gjett</button>
+
+    <script>
+
+
+        var hemmeligTall = Math.floor(Math.random()*100+1);
+        var btn = document.getElementById("btn");
+        var gjettTall = document.getElementById("gjettTall");
+
+
+        console.log(hemmeligTall);
+
+        btn.onclick = function () {
+            if (gjettTall.value < hemmeligTall){
+                document.write("Du har gjettet for lavt, gjett igjen");
+            }
+            else if (gjettTall.value > hemmeligTall) {
+                document.write("Du har gjettet for høyt, gjett igjen");
+            }
+            else {
+                document.write("Du har gjettet riktig!");
+            }
+        }
+
+    </script>
+
+
+</body>
+</html>

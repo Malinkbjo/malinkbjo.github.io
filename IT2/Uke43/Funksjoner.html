@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Funksjoner</title>
+</head>
+<body>
+
+    <script>
+
+        var tall = 27; // global variabel, kan brukes hvor som helst i koden.
+
+        function hurraMedNavn(navn) {
+            var tekst = "Hurra for " + navn + " du blir " + tall + " år"; // tekst er en lokal variabel, funker kun inni funksjonen, ikke i konsoll
+            document.write(tekst);
+        }
+
+        hurraMedNavn("Thor",  27);// funksjonsskall
+
+        var tekst = "Hallo";
+        document.write(tekst);
+
+        /*
+
+        for (var i=0; i < 10; i++) {
+            console.log(i);
+        }
+
+        document.write(i);
+
+
+        for(let j = 0; j < 10; j++){
+            console.log(j);
+        }
+        document.write(j);
+        */
+
+
+    </script>
+
+
+</body>
+</html>

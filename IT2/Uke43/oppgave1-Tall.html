@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Oppgave 1</title>
+</head>
+<body>
+
+
+    <input type="number" id="inputFelt">
+    <div id="losning"></div>
+
+
+    <script>
+
+        const inputFelt = document.getElementById("inputFelt");
+        inputFelt.oninput = function storre(tall) {
+            if (inputFelt.value > 0) {
+                losning.innerHTML = "Større enn null";
+            }
+            else if (inputFelt.value < 0) {
+                losning.innerHTML = "Mindre enn null";
+            }
+
+            else {
+                losning.innerHTML = "Tallet er null";
+            }
+        }
+
+
+    </script>
+
+</body>
+</html>

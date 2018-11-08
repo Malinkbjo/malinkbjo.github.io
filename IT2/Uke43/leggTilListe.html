@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+</head>
+<body>
+
+    <ul id="filmListe">
+
+        <li>Bølgen</li>
+        <li>Skjelvet</li>
+
+    </ul>
+
+        <input type="text" id="inputFilm">
+        <input type="color" id="inputBf">
+        <button id="btn">Legg til film</button>
+
+    <script>
+
+        const filmListe = document.getElementById("filmListe");
+        const inputFilm = document.getElementById("inputFilm");
+
+        const inputBf = document.getElementById("inputBf");
+
+        const btn = document.getElementById("btn");
+
+        btn.onclick = function () {
+            leggTilPunkt(filmListe, inputFilm.value, inputBf.value);
+            inputFilm.value = "";
+        };
+
+
+        function leggTilPunkt(liste,punkt, bakgrunnsfarge) {
+            liste.innerHTML += "<li>" + punkt + "</li>";
+            liste.style.backgroundColor = bakgrunnsfarge;
+        }
+
+       /* leggTilPunkt(filmListe,"Die Hard 2");
+        leggTilPunkt(filmListe,"Die Hard 2"); */
+
+    </script>
+
+</body>
+</html>

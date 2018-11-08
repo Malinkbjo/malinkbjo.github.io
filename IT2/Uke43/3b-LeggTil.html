@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Legg til </title>
+</head>
+<body>
+
+    <ul id="sangListe">
+        <li>Jealous</li>
+        <li>Sad</li>
+
+    </ul>
+
+    <input type="text" id="inputSang">
+
+    <button id="btn">Legg til</button>
+
+
+    <script>
+
+        const sangListe = document.getElementById("sangListe");
+        const inputSang = document.getElementById("inputSang");
+        const btn = document.getElementById("btn");
+
+
+        btn.onclick = function () {
+            leggTilDiv(sangListe, inputSang.value);
+            inputSang.value = "";
+        };
+        
+        function leggTilDiv(sangListe,punkt) {
+            sangListe.innerHTML += "<li>" + punkt + "</li>";
+        }
+
+        leggTilDiv(sangListe, "Believe");
+        
+    </script>
+
+</body>
+</html>

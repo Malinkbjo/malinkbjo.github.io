@@ -42,14 +42,47 @@ div > h1{
     margin-bottom: 50px;
 }
 
-#btnNeste {
+#btnNext {
     background-color: grey;
-    height: 35px;
+    border-radius: 90px 0 0 90px;
+    border: none;
+    height: 50px;
     width: 35px;
-    transform: translate(330px, -50%);
-    font-size: 20px;
+    transform: translate(352px, -80%);
+    font-size: 21px;
+    font-weight: bold;
+    text-align: center;
+    opacity: 0.8;
+    filter: alpha(opacity=80);
 
 }
+
+#btnBack {
+    border-radius: 0 90px 90px  0;
+    background-color: grey;
+    border: none;
+    height: 50px;
+    width: 35px;
+    transform: translate(-352px, -80%);
+    font-size: 21px;
+    text-align: center;
+    font-weight: bold;
+    opacity: 0.8;
+    filter: alpha(opacity=80);
+
+}
+
+
+#divTeller {
+    transform: translate(650px, -640%);
+    border-radius: 35px;
+    height: 40px;
+    width: 40px;
+    background-color: grey;
+    border: 1px solid darkgrey;
+    font-size: 22px;
+}
+
 
 
 

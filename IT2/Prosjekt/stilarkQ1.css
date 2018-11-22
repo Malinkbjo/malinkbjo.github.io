@@ -9,6 +9,8 @@ body {
     text-align: center;
     background-image: url("Bilder/notebook.jpg");
     background-size: cover;
+    opacity: 0.9;
+    filter: none(opacity=90);
     height: 500px;
     width: 700px;
     top: 50%;
@@ -24,25 +26,29 @@ body {
     top: 45%;
 
 }
-#btn1 {
+#knapp1, #knapp2, #knapp3{
     border: 2px solid darkgrey;
     height: 50px;
     margin-bottom: 3px;
+    background-color: grey;
+    opacity: 0.8;
+    filter: alpha(opacity=80);
 }
-#btn2 {
-    border: 2px solid darkgrey;
-    height: 50px;
-    margin-bottom: 3px;
- }
-#btn3 {
-      border: 2px solid darkgrey;
-      height: 50px;
-  }
+
 
 div > h1{
     font-size: 30px;
     font-weight: bold;
     margin-bottom: 50px;
+}
+
+#btnNeste {
+    background-color: grey;
+    height: 35px;
+    width: 35px;
+    transform: translate(330px, -50%);
+    font-size: 20px;
+
 }
 
 

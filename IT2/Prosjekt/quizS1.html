@@ -11,31 +11,72 @@
 <body>
 
     <div id="app">
-        <h1>Hvilken film er dette fra?</h1>
+        <h1 id="question">Hvilken film er dette fra?</h1>
 
             <div id="alternativ">
-                <button class="w3-button w3-block w3-left-align" id="btn1">Forrest Gump</button>
-                <button class="w3-button w3-block w3-left-align" id="btn2">The Notebook</button>
-                <button class="w3-button w3-block w3-left-align" id="btn3">Dear John</button>
+                <button class="w3-button w3-block w3-left-align" id="knapp1">Forrest Gump</button>
+                <button class="w3-button w3-block w3-left-align" id="knapp2">Dear John</button>
+                <button class="w3-button w3-block w3-left-align" id="knapp3">The Notebook</button>
             </div>
+
     </div>
+    <div id="results"></div>
 
 
     <script>
 
-        const btn1 = document.getElementById("btn1");
-        const btn2 = document.getElementById("btn2");
-        const btn3 = document.getElementById("btn3");
+        const knapp1 = document.getElementById("knapp1");
+        const knapp2 = document.getElementById("knapp2");
+        const knapp3 = document.getElementById("knapp3");
+        const app = document.getElementById("app");
 
-        btn1.onclick = function () {
+
+        let liste = [["Forrest Gump", "Dear John", "The Notebook", "Bilder/notebook.jpg",3], ["It","Titanic","Clown", "Bilder/it.gif",1],["Mission Impossible","Dark Tower","Mad Max", "Bilder/darkTower.jpg",2]];
+        let c = 0;
+        let r = 0;
+
+
+
+        knapp1.onclick = function nesteSpm() {
+            c = c+1;
+            r = 1;
+            knapp1.innerText = liste[c][0];
+            knapp2.innerText = liste[c][1];
+            knapp3.innerText = liste[c][2];
+            document.getElementById("app").style.backgroundImage = "url('" + liste[c][3] + "')";
+            console.log(document.getElementById("app").backgroundImage);
+
+            if (r === liste[c][4]) {
+                document.getElementById("knapp1").style.backgroundColor = "green";
+            }
+            else {
+                document.getElementById("knapp1").style.backgroundColor = "red";
+            }
+            console.log(document.getElementById("knapp1").style.backgroundColor)
 
         };
-        btn2.onclick = function () {
+        knapp2.onclick = function nesteSpm() {
+            c = c+1;
+            knapp1.innerText = liste[c][0];
+            knapp2.innerText = liste[c][1];
+            knapp3.innerText = liste[c][2];
+            document.getElementById("app").style.backgroundImage = "url('" + liste[c][3] + "')";
+            console.log(document.getElementById("app").backgroundImage);
 
         };
-        btn3.onclick = function () {
+        knapp3.onclick = function nesteSpm() {
+            c = c+1;
+            knapp1.innerText = liste[c][0];
+            knapp2.innerText = liste[c][1];
+            knapp3.innerText = liste[c][2];
+            document.getElementById("app").style.backgroundImage = "url('" + liste[c][3] + "')";
+            console.log(document.getElementById("app").backgroundImage);
 
         };
+
+
+
+
 
 
     </script>

@@ -48,25 +48,10 @@ div > h1{
     border: none;
     height: 50px;
     width: 35px;
-    transform: translate(352px, -80%);
+    transform: translate(331px, -120%);
     font-size: 21px;
     font-weight: bold;
     text-align: center;
-    opacity: 0.8;
-    filter: alpha(opacity=80);
-
-}
-
-#btnBack {
-    border-radius: 0 90px 90px  0;
-    background-color: grey;
-    border: none;
-    height: 50px;
-    width: 35px;
-    transform: translate(-352px, -80%);
-    font-size: 21px;
-    text-align: center;
-    font-weight: bold;
     opacity: 0.8;
     filter: alpha(opacity=80);
 

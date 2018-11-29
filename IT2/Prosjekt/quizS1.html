@@ -18,9 +18,8 @@
                 <button class="w3-button w3-block w3-left-align" id="knapp2">Dear John</button>
                 <button class="w3-button w3-block w3-left-align" id="knapp3">The Notebook</button>
             </div>
-                <div id="divTeller">0</div>
+            <div id="divTeller">0</div>
             <button id="btnNext">></button>
-            <button id="btnBack"><</button>
     </div>
     <div id="results"></div>
 
@@ -30,62 +29,38 @@
         const knapp1 = document.getElementById("knapp1");
         const knapp2 = document.getElementById("knapp2");
         const knapp3 = document.getElementById("knapp3");
-        const app = document.getElementById("app");
         const btnNext = document.getElementById("btnNext");
-        const btnBack = document.getElementById("bntBack");
-        const divTeller = document.getElementById("divTeller");
+        let divTeller = document.getElementById("divTeller");
 
-        let d = 0;
 
-        function verdi () {
-            if (d === liste [c][4]) {
-                d +=1;
-            }
+        let t = 0;
+        let g = 5;
 
-            divTeller.innerHTML = antall;
 
-        }
-
-        let liste = [["Forrest Gump", "Dear John", "The Notebook", "Bilder/notebook.jpg",3], ["It","Titanic","Clown", "Bilder/it.gif",1],["Mission Impossible","Dark Tower","Mad Max", "Bilder/darkTower.jpg",2], ["Mamma Mia", "Mean Girls", "Pretty Woman","Bilder/mammaMia.jpg",1], ["My sisters keeper", "The Fault In Our Stars", "Clueless", "Bilder/faultInOurStars.jpg", 2]];
+        let liste = [["Forrest Gump", "Dear John", "The Notebook", "Bilder/notebook.jpg",2], ["It","Titanic","Clown", "Bilder/it.gif",0],["Mission Impossible","Dark Tower","Mad Max", "Bilder/darkTower.jpg",1], ["Mamma Mia", "Mean Girls", "Pretty Woman","Bilder/mammaMia.jpg",0], ["My Sisters Keeper", "The Fault In Our Stars", "Clueless", "Bilder/faultInOurStars.jpg", 1], ["Romeo + Juliet", "Inception", "Titanic", "Bilder/titanic.jpg"], ["The Greatest Showman", "The Circus", "Water for Elephants", "Bilder/theGreatestShowman.jpg", 0]];
         let c = 0;
-        let r = 0;
+        let bsvar = [];
 
-
-        knapp1.onclick = function nesteSpm() {
-            c = c+1;
-            r = 1;
-            knapp1.innerText = liste[c][0];
-            knapp2.innerText = liste[c][1];
-            knapp3.innerText = liste[c][2];
-            document.getElementById("app").style.backgroundImage = "url('" + liste[c][3] + "')";
-            console.log(document.getElementById("app").backgroundImage);
-
-           /* if (r === liste[c][4]) {
-                document.getElementById("knapp1").style.backgroundColor = "green";
-            }
-            else {
-                document.getElementById("knapp1").style.backgroundColor = "red";
-            } */
+        knapp1.onclick = function () {
+            nesteSpm();
+            bsvar.push(0);
+            g = 0;
+            telling();
+        };
+        knapp2.onclick = function () {
+            nesteSpm();
+            bsvar.push(1);
+            g = 1;
+            telling();
 
         };
-        knapp2.onclick = function nesteSpm() {
-            c = c+1;
-            knapp1.innerText = liste[c][0];
-            knapp2.innerText = liste[c][1];
-            knapp3.innerText = liste[c][2];
-            document.getElementById("app").style.backgroundImage = "url('" + liste[c][3] + "')";
-            console.log(document.getElementById("app").backgroundImage);
-
+        knapp3.onclick = function () {
+            nesteSpm();
+            bsvar.push(2);
+            g = 2;
+            telling();
         };
-        knapp3.onclick = function nesteSpm() {
-            c = c+1;
-            knapp1.innerText = liste[c][0];
-            knapp2.innerText = liste[c][1];
-            knapp3.innerText = liste[c][2];
-            document.getElementById("app").style.backgroundImage = "url('" + liste[c][3] + "')";
-            console.log(document.getElementById("app").backgroundImage);
 
-        };
 
         btnNext.onclick = function () {
             c = c+1;
@@ -96,13 +71,33 @@
 
         };
 
-        btnBack.onclick = function () {
-            c = c-1;
+
+
+        function nesteSpm() {
+            c = c+1;
             knapp1.innerText = liste[c][0];
             knapp2.innerText = liste[c][1];
             knapp3.innerText = liste[c][2];
             document.getElementById("app").style.backgroundImage = "url('" + liste[c][3] + "')";
-        };
+        }
+
+        function telling() {
+            if (g === liste[c-1][4]) {
+                t = t+1;
+                divTeller.innerHTML = t;
+            }
+            console.log("t er " + t);
+            console.log("g er " + g);
+            console.log("riktig svar er " + liste[c-1][4]);
+
+        }
+
+
+
+
+
+
+
 
 
 

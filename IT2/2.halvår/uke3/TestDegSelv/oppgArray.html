@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Oppgave 1</title>
+</head>
+<body>
+
+    <ul id="handleListe"></ul>
+
+    <script>
+
+
+
+        let hanleListe = document.querySelector("#hanleListe");
+        let matvarer = ["Ost", "Paprika", "Brød", "Kaviar"];
+
+        matvarer.unshift("Agurk");
+        matvarer.pop();
+        matvarer.splice(1,1,"Knekkebrød");
+
+        for(let mat of matvarer){
+            handleListe.innerHTML += "<li>" + mat + "</li>";
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Oppgave 5</title>
+</head>
+<body>
+
+    <ul id="tallRekke"></ul>
+
+
+    <script>
+
+        let tallene = [100, 5000, 3, 49, 20];
+        let tallRekke = document.getElementById("tallRekke");
+
+        tallene.sort(function (a,b) {
+            return a-b;
+        });
+
+        for (let tall of tallene) {
+           tallRekke.innerHTML += "<li>" + tall + "</li>";
+        }
+
+
+    </script>
+
+</body>
+</html>

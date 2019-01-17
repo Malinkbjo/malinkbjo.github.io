@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Oppgave 1</title>
+</head>
+<body>
+
+    <ol id="handleListe"></ol>
+
+    <script>
+
+        let matvarer = ["Ost", "Brød", "Paprika","Kaviar"];
+        let handleListe = document.getElementById("handleListe");
+
+       /* for (let mat of matvarer) {
+            handleListe.innerHTML += "<li>" + mat + "</li>";
+            console.log(mat);
+        } */
+
+        for (let i = 0; i < matvarer.length, i++;){
+            var mat = matvarer[i];
+            document.write(mat);
+        }
+
+    </script>
+
+</body>
+</html>

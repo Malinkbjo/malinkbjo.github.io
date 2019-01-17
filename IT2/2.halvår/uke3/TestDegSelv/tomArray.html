@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Oppgave 6</title>
+</head>
+<body>
+
+    <div id="boks">
+        <input id="filmType"type="text">
+        <br>
+        <label for="" id="terningkast">Terningkast</label>
+        <select id="velg" ></select>
+    </div>
+
+    <ul id="filmListe"></ul>
+
+
+    <script>
+
+        let filmer = [];
+        let boks = document.getElementById("boks");
+        let terningkast = document.getElementById("terningkast");
+        let velg = document.getElementById("velg");
+
+        function leggTilFilm() {
+            for (let film of filmer) {
+                filmer.push(filmType);
+            }
+            filmListe.innerHTML = filmer;
+        }
+
+
+
+    </script>
+
+</body>
+</html>

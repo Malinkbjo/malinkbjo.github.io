@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Oppgave 2</title>
+</head>
+<body>
+
+    <ul id="tresort"></ul>
+
+    <script>
+
+        let tretyper = ["Lønn", "Hassel", "Bjørk", "Eik", "Blodlønn", "Furu", "Gran"];
+        let tresort = document.querySelector("#tresort");
+
+        tretyper.splice(3, 1); //tar bort eik
+        tretyper.splice(2, 1, "Hengebjørk"); // bytter ut bjørk med hengebjørk
+        tretyper.splice(4, 2); // fjerner Furu og Gran
+        tretyper.push("Fjellbjørk", "Dvergbjørk"); // legger til Fjellbjørk og Dvergbjørk sist i array
+        tretyper.sort(); // sorterer trærne alfabetisk
+
+        for (let tre of tretyper) {
+            tresort.innerHTML += "<li>" + tre + "</li>";
+
+        }
+
+    </script>
+
+</body>
+</html>

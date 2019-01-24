@@ -1,0 +1,52 @@
+
+body {
+    background-color: #D2C9C7;
+}
+
+main {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+}
+
+#inpNavn{
+    margin-bottom: 15px;
+    font-size: 15px;
+    width: 200px;
+    height: 30px;
+    border: 1px solid grey;
+}
+textarea {
+    font-size: 15px;
+    height: 100px;
+    width: 200px;
+    margin-bottom: 10px;
+
+}
+
+#prioritering {
+    font-size: 15px;
+    border-radius: 0;
+    margin-bottom: 15px;
+    background-color: white;
+    width: 200px;
+    border: 1px solid grey;
+    -webkit-appearance: none;
+    -webkit-border-radius: 0px;
+
+}
+
+#btnSend {
+    font-size: 15px;
+    width: 200px;
+    border:1px solid grey;
+}
+
+#beskjed {
+    border: 1px solid black;
+    width: 400px;
+    height: 200px;
+}
+
+
+

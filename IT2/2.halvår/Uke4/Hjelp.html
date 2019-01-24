@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hjelp</title>
+
+    <link rel="stylesheet" href="HjelpS.css">
+</head>
+<body>
+
+    <h1>Hjelpeliste</h1>
+
+    <main>
+
+    <div id="app">
+        <input type="text" id="inpNavn" placeholder="Navn" required>
+        <br>
+        <textarea name="" id="hjelp" placeholder="Hva trenger du hjelp med?" required></textarea>
+        <br>
+        <select id="prioritering" required>
+            <option disabled selected>Velg prioritering</option>
+            <option>Høy</option>
+            <option>Middels</option>
+            <option>Lav</option>
+        </select>
+        <br>
+        <button id="btnSend">Send</button>
+    </div>
+
+
+
+    <div id="beskjed"></div>
+    </main>
+        <script>
+
+            var btnSend = document.getElementById("btnSend");
+            var app = document.getElementById("app");
+            var inpNavn = document.getElementById("inpNavn");
+            var inpProblem = document.getElementById("inpProblem");
+            var prioritering = document.getElementById("prioritering");
+            var hjelp = document.getElementById("hjelp");
+            var beskjed = document.getElementById("beskjed");
+
+            btnSend.oncliclk = function () {
+                beskjed.innerHTML += inpNavn.value + inpProblem.value + prioritering;
+            }
+
+
+
+        </script>
+</body>
+</html>

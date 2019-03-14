@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+
+    <style>
+
+        #hjerte {
+            width: 200px;
+            position: absolute;
+            transition: 0.2s;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="divPoeng"></div>
+    <img src="hjerte.png" id="hjerte">
+
+
+    <script>
+
+        const divPoeng = document.getElementById("divPoeng");
+        const hjerte = document.getElementById("hjerte");
+
+        var poeng = 0;
+
+        hjerte.onclick = merPoeng;
+        hjerte.onkeydown = merPoeng;
+
+
+        function merPoeng() {
+            poeng+=10;   //a
+            divPoeng.innerHTML = "Poeng: " + poeng;
+            //b
+            hjerte.style.left = Math.random()*(innerWidth - 500) + "px";
+            hjerte.style.top = Math.random()*(innerHeight-500) + "px";
+
+        }
+
+
+
+    </script>
+    i
+</body>
+</html>

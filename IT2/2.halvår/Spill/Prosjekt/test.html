@@ -19,11 +19,13 @@
 
             // Globale variabler
         var levende = true;
+        var frame = 0;
+
 
         var bane = {
             bredde:bCanvas.width,
             hoyde: bCanvas.height,
-            bakgrunnsfarge: "grey"
+            bakgrunnsfarge: "grey",
         };
         var figur1 = {
             bredde: 30,
@@ -31,10 +33,10 @@
             farge: "orange",
             xpos: 100,
             ypos: 350,
-            xfart: 5,
-            yfart: 10,
+            xfart: 1,
+            yfart: 2,
             xretning:0,
-            yretning:-5
+            yretning:-5,
         };
         var hinder = {
             bredde: 20,
@@ -48,16 +50,49 @@
             yretning:1
 
         };
+        var hinder2 = {
+            bredde: 20,
+            hoyde: 20,
+            farge: "yellow",
+            xpos: 700,
+            ypos: 360,
+            xfart: 5,
+            yfart: 5,
+            xretning:1,
+            yretning:1
+
+        };
+        var hinderEgenskaper = {
+           bredde: 20,
+           hoyde: 20,
+           farge: "yellow",
+           ypos: 360,
+           xfart: 5,
+           yfart: 5,
+           xretning: 1,
+           yretning: 1,
+        };
+
+
 
         //Hendelsesfunksjon
         window.onkeydown = hoppFigur;
 
+
         // funksjonsdefinisjoner
        function gameLoop() {
+           frame += 1;
            tegnBane();
+           genererHindere(hinderEgenskaper);
+           tegnHindere(hindere);
+           flyttHindere(hindere);
            tegnFigur(figur1);
            flyttHinder(hinder);
-           tegnHinder();
+           flyttHinder(hinder2);
+           flyttHinder(hindere);
+           tegnHinder(hinder);
+           tegnHinder(hinder2);
+           gravitasjon(figur1);
            sjekkKollisjon();
            if(levende){
                requestAnimationFrame(gameLoop);
@@ -66,6 +101,7 @@
 
         function tegnBane() {
             ctx.fillStyle = bane.bakgrunnsfarge;
+            //ctx.drawImage()
             ctx.fillRect(0, 0, bane.bredde, bane.hoyde)
         }
 
@@ -74,25 +110,62 @@
             ctx.fillRect(figur.xpos, figur.ypos, figur.bredde, figur.hoyde)
         }
 
-        function hoppFigur(event) {
+        function hoppFigur(event){
             if(event.code === "Space"){
-                figur1.ypos += -30;
-
+                figur1.ypos -= 50;
             }
 
+        }
+        function gravitasjon() {
+
+            if (figur1.ypos < bCanvas.height- 5,0){
+                figur1.ypos +=figur1.yfart;
+            }
         }
         function flyttHinder(hinder) {
             hinder.xpos -= (hinder.xretning*hinder.xfart)
         }
 
-        function tegnHinder() {
+        function tegnHinder(hinder) {
             ctx.fillStyle = hinder.farge;
             ctx.fillRect(hinder.xpos, hinder.ypos, hinder.bredde, hinder.hoyde)
 
         }
 
+
+        function tegnHindere(hindere) {
+            for(let hinder of hindere){
+                tegnHinder(hinder);
+            }
+        }
+
+        function flyttHindere(hindere) {
+            for (let hinder of hindere){
+                flyttHinder(hinder);
+            }
+        }
+
         function sjekkKollisjon() {
 
+        }
+
+        let hindere = [];
+
+        function genererHindere(hinderEgenskaper) {
+            if(frame % 60 == 0){
+                let x = Math.random() + 600;
+                let nyttHinder = {
+                    xpos: x,
+                    ypos:hinderEgenskaper.ypos,
+                    bredde: hinderEgenskaper.bredde,
+                    hoyde: hinderEgenskaper.hoyde,
+                    farge: hinderEgenskaper.farge,
+                    xretning: hinderEgenskaper.xretning,
+                    xfart: hinderEgenskaper.xfart
+                };
+
+                hindere.push(nyttHinder);
+            }
         }
 
         // setup/start

@@ -149,7 +149,7 @@
            let nyDato = new Date;
            let nyTid = nyDato.getTime();
            let tidPassert = (nyTid - startTid)/1000; // tar tiden fra 1970 - tiden fra man startet spillet til man dør, deler på 1000 for å få sekunder
-           tid.innerHTML = "Tid: " + tidPassert.toFixed(0) + " sek."; // skriver ut tid: i sekunder uten desimaltall og sek. bak
+           tid.innerHTML = "Tid: " + tidPassert + " sek."; // skriver ut tid: i sekunder uten desimaltall og sek. bak
        }
 
        function tegnRekord() { // lager en funksjon som skal vise rekorden og ny rekord om man slår den

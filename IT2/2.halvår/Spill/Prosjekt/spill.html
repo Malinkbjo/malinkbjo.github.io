@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+
+    <style>
+
+        h1 {
+            text-align: center;
+        }
+
+        #restart {
+            transform: translate(-250px, -470px);
+        }
+
+
+        #tid {
+            transform: translate(240px, -400px);
+            font-weight: bold;
+        }
+        #spill {
+            text-align: center;
+        }
+        #gameOver {
+            font-weight: bold;
+            transform: translate(0px, -370px);
+        }
+
+        #tellRekord {
+            font-weight: bold;
+            transform: translate(0px, -430px);
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <h1> Steinhopp</h1>
+
+    <div id="spill">
+    <canvas id="bCanvas" width="600" height="400"></canvas>
+
+    <p id="tid"></p>
+    <p id="tellRekord"></p>
+    <button id="restart">Restart</button>
+    <h1 id="gameOver"></h1>
+
+
+    </div>
+
+
+    <script>
+        // Referanser til HTML-element
+        var bCanvas = document.getElementById("bCanvas");
+        var ctx = bCanvas.getContext("2d");
+        var restart = document.getElementById("restart");
+        var tid = document.getElementById("tid");
+        var tellRekord = document.getElementById("tellRekord");
+        var gameOver = document.getElementById("gameOver");
+
+            // Globale variabler
+        var levende = true; //variabel for at levende er true
+        var frame = 0;
+
+        let imgHinder = document.createElement("img");
+        imgHinder.src = "brick_1.png"; //legger inn bilde for hindere
+        let imgBakgrunn = document.createElement("img");
+        imgBakgrunn.src = "country-platform.png"; // legger inn bilde for bakgrunn
+        let imgFigur = document.createElement("img");
+        imgFigur.src = "figur.png"; // legger inn bilde for figur
+
+
+        var bane = {
+            bredde:bCanvas.width,
+            hoyde: bCanvas.height,
+
+
+        };
+        var figur1 = {
+            bredde: 35,
+            hoyde: 35,
+            farge: "orange",
+            xpos: 100,
+            ypos: 315,
+            xfart: 1,
+            yfart: 2,
+            xretning:0,
+            yretning:-5,
+        };
+        var hinder = {
+            bredde: 30,
+            hoyde: 30,
+            farge: "yellow",
+            xpos: 500,
+            ypos: 320,
+            xfart: 5,
+            yfart: 5,
+            xretning:1,
+            yretning:1
+
+        };
+
+        var hinderEgenskaper = {
+           bredde: 30,
+           hoyde: 30,
+           farge: "yellow",
+           ypos: 320,
+           xfart: 5,
+           yfart: 5,
+           xretning: 1,
+           yretning: 1,
+        };
+
+        const startDato = new Date; // henter opp dato
+        const startTid = startDato.getTime(); // henter opp tiden
+
+        //Hendelsesfunksjon
+        window.onkeydown = hoppFigur; // Når man trykker på spacetasten så hopper figuren
+
+        restart.onclick = function(){ // funksjon som reloader spillet når man trykker på restart knappen
+            location.reload();
+        };
+
+
+        // funksjonsdefinisjoner
+       function gameLoop() { // gameloop som looper gjennom alle funksjonene og sjekker om de kjører
+           frame += 1;
+           oppdaterTid();
+           tegnRekord();
+           tegnBane();
+           genererHindere(hinderEgenskaper);
+           tegnHindere(hindere);
+           flyttHindere(hindere);
+           tegnFigur(figur1);
+           flyttHinder(hinder);
+           flyttHinder(hindere);
+           tegnHinder(hinder);
+           gravitasjon(figur1);
+           sjekkKollisjon();
+           if(levende){
+               requestAnimationFrame(gameLoop); // gjør at spillet kjører dersom spilleren er levende
+           }
+       }
+
+       function oppdaterTid() { // funksjonen teller sekunder
+           let nyDato = new Date;
+           let nyTid = nyDato.getTime();
+           let tidPassert = (nyTid - startTid)/1000; // tar tiden fra 1970 - tiden fra man startet spillet til man dør, deler på 1000 for å få sekunder
+           tid.innerHTML = "Tid: " + tidPassert.toFixed(0) + " sek."; // skriver ut tid: i sekunder uten desimaltall og sek. bak
+       }
+
+       function tegnRekord() { // lager en funksjon som skal vise rekorden og ny rekord om man slår den
+           let nyDato = new Date; // definisjon for dato
+           let nyTid = nyDato.getTime();
+           let tidPassert = (nyTid - startTid)/1000;
+
+           if(localStorage.record === undefined){ //sjekker om det er lagret en rekord
+               localStorage.record = 0; // dersom det ikke er det, er rekorden 0
+           }
+           tellRekord.innerHTML = "Rekord: " + localStorage.record + " sek"; //skriver ut rekord: + rekorden og sek
+
+           if(tidPassert > localStorage.record){ //sjekker om tidPassert er større enn rekorden
+               localStorage.record = tidPassert; // om det er det så blir den gjort om til tidPassert.
+               tellRekord.innerHTML = "Ny Rekord: " + tidPassert + " sek"; //skriver ut ny rekord: + tidPassert + sek
+           }
+       }
+
+
+        function tegnBane() { //tegner bane
+            ctx.drawImage(imgBakgrunn, 0, 0,600,400); // tegner bakgrunnsbilde til banen i 600 bredde og 400 høyde
+
+        }
+
+        function tegnFigur(figur) { // tegner figur
+           ctx.drawImage(imgFigur, figur.xpos, figur.ypos, figur.bredde, figur.hoyde);
+        }
+
+        function hoppFigur(event){  // får figuren til å hoppe når man trykker på space-tasten
+            if(event.code === "Space"){
+                figur1.ypos -= 62; // figuren hopper 62px oppover når man trykker på spacetasten
+                if(figur1.ypos >= 62){  //hvis figuren hopper høyere enn ypos 62, stopper den der og går ned igjen
+                    figur1.ypos = 255;
+                }
+
+            }
+
+
+        }
+        function gravitasjon() { //pusher figuren ned igjen når den hopper
+            if (figur1.ypos < bCanvas.height- 85){ // hvis figuren sin ypos er mindre enn høyden på canvas - 85px, blir figuren pushet ned
+                figur1.ypos +=figur1.yfart;
+            }
+        }
+        function flyttHinder(hinder) { // funksjon som flytter hinderne
+            hinder.xpos -= (hinder.xretning*hinder.xfart)
+
+        }
+
+        function tegnHinder(hinder) { // funksjon som tegner hinder
+            ctx.drawImage(imgHinder, hinder.xpos, hinder.ypos,hinder.bredde,hinder.hoyde);
+
+        }
+
+        function tegnHindere(hindere) { // funksjon med løkke som looper gjennom hinderene og tegner nye hindere
+            for(let hinder of hindere){
+                tegnHinder(hinder);
+            }
+        }
+
+        function flyttHindere(hindere) { // funksjon med løkke som looper gjennom hinderene og flytter nye hindere
+            for (let hinder of hindere){
+                flyttHinder(hinder);
+
+            }
+        }
+
+        function sjekkKollisjon() { // sjekker om figuren treffer det første hinderet og hvis den gjør det stopper spillet.
+            if (figur1.xpos + figur1.bredde >= hinder.xpos && figur1.xpos <= hinder.xpos + hinder.bredde &&
+                figur1.ypos + figur1.hoyde >= hinder.ypos && figur1.ypos <= hinder.ypos + hinder.hoyde) {
+                levende = false; // spilleren er død, spillet stopper
+                gameOver.innerHTML = "Game over"; // skriver ut game over
+            }
+
+            for (let hinder of hindere){ // løkke som looper gjennom alle hinderne og sjekker om figuren treffer resten av hinderene
+                if (figur1.xpos + figur1.bredde >= hinder.xpos && figur1.xpos <= hinder.xpos + hinder.bredde &&
+                    figur1.ypos + figur1.hoyde >= hinder.ypos && figur1.ypos <= hinder.ypos + hinder.hoyde) {
+                    levende = false; // spilleren er død og spillet stopper
+                    gameOver.innerHTML = "Game over"; // skriver ut game over
+
+                }
+
+            }
+        }
+
+        let hindere = []; //array for hinderene
+
+        function genererHindere(hinderEgenskaper) { // funksjon som lager flere hindre
+            if(frame % 60 == 0){
+                let x = Math.random() + 500; // lager nye hindre tilfeldig
+                let nyttHinder = { // lager et nytt ginder med x som xposisjon, og resten er egenskapene til hinderEgenskaper
+                    xpos: x,
+                    ypos:hinderEgenskaper.ypos,
+                    bredde: hinderEgenskaper.bredde,
+                    hoyde: hinderEgenskaper.hoyde,
+                    farge: hinderEgenskaper.farge,
+                    xretning: hinderEgenskaper.xretning,
+                    xfart: hinderEgenskaper.xfart
+                };
+
+
+                hindere.push(nyttHinder); // pusher ut nye hindre
+            }
+        }
+
+        // setup/start
+       gameLoop();
+
+    </script>
+
+</body>
+</html>

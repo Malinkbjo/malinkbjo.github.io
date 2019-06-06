@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Film anmeldelse</title>
+
+    <style>
+        #boks {
+            margin: auto;
+            width: 800px;
+            height: 600px;
+            border: 1px solid grey;
+            background-color: lightgray;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        #film {
+            float: left;
+            width: 300px;
+            height: 450px;
+            margin: auto;
+        }
+        p {
+            margin-top: 15px;
+        }
+        img {
+            width: 100px;
+            height: 100px;
+        }
+        h2 {
+            text-align: center;
+        }
+        .col2 { grid-column: span 2; }
+
+    </style>
+
+</head>
+<body>
+
+<div id="boks">
+   <div class="col2">
+       <h2>Filmanmeldelse</h2>
+   </div>
+    <img src="snowden.jpg" id="film">
+    <p id="tekst"></p>
+    <img src="terning.png" id="terning" style="display: none">
+</div>
+
+<script>
+
+    let film = document.querySelector("#film");
+
+    film.onclick = function () {
+        tekst.innerHTML = `
+        <p><b>${"Snowden (2016)"}</b><br>${"Filmen falt ikke helt i smak hos meg, men var heller ikke dårlig. Handlingen var litt spennende, men varigheten på filmen var for lang. " +
+        "Noe jeg likte ved filmen er at de fikk inn litt romantikk, som for meg gjør filmen bedre."}</p>
+        <p><b>${"Terningkast:"}</b></p>
+        <img src="${"terning.png"}">
+        `;
+    };
+
+
+</script>
+
+
+</body>
+</html>
